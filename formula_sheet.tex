@@ -1,0 +1,217 @@
+\documentclass[10pt,letterpaper]{report}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\pagenumbering{gobble}
+\usepackage{array}
+
+\begin{document}
+  \fancyhead{} % clear all header fields
+  \fancyhead[C]{\LARGE{\textbf{Electromagnetic Fields Formulas}}}  
+  \large 
+  
+  \begin{equation*}
+    \begin{split} % Left Column 
+      %
+      % General Vector Equations
+      %
+      &\text{\underline{\textbf{General}}} \\
+      &\textbf{A}\cdot \textbf{B} = ABcos(\theta_{AB}) \\ % dot product
+      &\textbf{A} \times \textbf{B} = ABsin(\theta_{AB}) \\ % cross product
+      &\textbf{A} \cdot (\textbf{B} \times \textbf{C}) \\ % scaler triple product
+      & \quad = \textbf{B} \cdot (\textbf{C} \times \textbf{A}) = \textbf{C} \cdot (\textbf{A} \times \textbf{B} )  \\
+      &\textbf{A} \cdot (\textbf{B} \times \textbf{C}) = 
+        \begin{vmatrix}  
+          A_x & A_y & A_z \\
+          B_x & B_y & B_z \\
+          C_x & C_y & C_z
+        \end{vmatrix} \\
+      &\textbf{A} \times \textbf{B} \times \textbf{C} \\ % vector triple product
+      &\quad = \textbf{B}(\textbf{A} \cdot \textbf{C}) - \textbf{C}(\textbf{A} \cdot \textbf{B}) \\
+      &A_B = \textbf{A} \cdot \textbf{a}_B = Acos\theta_{AB} \\ % scaler component of a on b
+      &\textbf{A}_B = A_B\textbf{a}_B = (\textbf{A} \cdot \textbf{a}_B)\textbf{a}_B \\ % vector component of a on b
+      %
+      % Cartesian Coordinate Equations
+      %
+      &\text{\underline{\textbf{Cartesian}}} \\
+      &d^2 = (x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2 \\ % distance between points
+      &\nabla = \frac{\partial}{\partial x}\textbf{a}_x +  \frac{\partial}{\partial y}\textbf{a}_y + \frac{\partial}{\partial z}\textbf{a}_z \\
+      %
+      % Cylindrical Coordinate Equations
+      %
+      &\text{\underline{\textbf{Cylindrical}}} \\
+      &d^2 = \rho_1^2 + \rho_2^2 -2\rho_1\rho_2 cos( \phi_2 - \phi_1 ) \\ % distance between points
+      &\quad + (z_2 - z_1)^2 \\
+      &\lvert\textbf{A} \rvert = \sqrt{A_{\rho}^2 + A_{\phi}^2 + A_z^2} \\ % Magnitude of A
+      &\rho = \sqrt{x^2 + y^2} \\
+      &\phi = tan^{-1} \left(\frac{y}{x}\right) \\
+      &cos( \phi ) = \frac{x}{\sqrt{x^2 + y^2}} \\
+      &sin( \phi ) = \frac{y}{\sqrt{x^2 + y^2}}
+    \end{split}
+    \quad
+    \begin{split} % Center Column 
+      &x = \rho cos(\phi) \\
+      &y = \rho sin(\phi) \\
+      &z = z \\
+      &\nabla = \textbf{a}_{\rho} \frac{\partial}{\partial \rho} + \textbf{a}_{\phi} \frac{1}{\rho} \frac{\partial}{\partial \phi} + \frac{\partial}{\partial z}\textbf{a}_z \\
+      %
+      % Spherical Coordinate Equations
+      %
+      &\text{\underline{\textbf{Spherical}}} \\
+      &d^2 = r_2^2 + r_1^2 -2r_1r_2 cos \theta_2 cos \theta_1 \\ % distance between points
+      &\quad -2r_1r_2 sin \theta_2 sin \theta_1 cos( \phi_2 - \phi_1 ) \\
+      &x = r sin( \theta ) cos( \phi ) \\
+      &y = r sin( \theta ) sin( \phi ) \\
+      &z = r cos( \theta ) \\
+      &\lvert \textbf{A} \rvert = \sqrt{A_{r}^2 + A_{\theta}^2 + A_{\phi}^2} \\ % Magnitude of A
+      &r = \sqrt{x^2 + y^2 +z^2} \\
+      &\theta = tan^{-1} \left(\frac{\sqrt{x^2 + y^2}}{z}\right) \\
+      &cos( \theta ) = \frac{z}{\sqrt{x^2 + y^2 +z^2}} \\
+      &sin( \theta ) = \frac{\sqrt{x^2 + y^2}}{\sqrt{x^2 + y^2 +z^2}}\\
+      &\phi = tan^{-1} \left(\frac{y}{x}\right) \\
+      &cos( \phi ) = \frac{x}{\sqrt{x^2 + y^2}} \\
+      &sin( \phi ) = \frac{y}{\sqrt{x^2 + y^2}} \\
+    \end{split}
+    \quad  
+    \begin{split} % Right Column   
+    %
+    % Spherical Cylindrical Conversion Equations
+    %
+    &\text{\underline{\textbf{Spherical Cylindrical}}} \\
+    &\rho = r sin( \theta ) \\
+    &\phi = \phi \\
+    &z = r cos( \theta ) \\
+    &r = \sqrt{\rho^2 + z^2} \\
+    &\theta = tan^{-1} \left(\frac{\rho}{z}\right)
+    \end{split}
+  \end{equation*}
+  
+  %
+  % Coordinate System Conversion Matrices
+  %
+  \begin{equation*}
+      % Left Column
+      \begin{split}
+        %
+        % Cartesian to Spherical
+        %
+        &\begin{bmatrix}
+            A_r \\
+            A_{\theta} \\
+            A_{\phi}
+          \end{bmatrix} 
+          =
+          \begin{bmatrix}
+            sin \theta cos \phi  & sin \theta sin \phi & cos \theta \\
+            cos \theta cos \phi  & cos \theta sin \phi & -sin \theta \\
+            -sin \phi            & cos \phi            & 0
+          \end{bmatrix} 
+          \begin{bmatrix}
+            A_x \\
+            A_y \\
+            A_z
+          \end{bmatrix} \\
+        %
+        % Cartesian to Cylindrical
+        %
+        &\begin{bmatrix}
+          A_{\rho} \\
+          A_{\phi} \\
+          A_z
+          \end{bmatrix} 
+          =
+          \begin{bmatrix}
+          cos \phi  & sin \phi & 0 \\
+          -sin \phi & cos \phi & 0 \\
+          0         & 0        & 1
+          \end{bmatrix} 
+          \begin{bmatrix}
+            A_x \\
+            A_y \\
+            A_z
+          \end{bmatrix} \\
+        %
+        % Spherical to Cylindrical
+        %
+        &\begin{bmatrix}
+          A_{\rho} \\
+          A_{\phi} \\
+          A_z
+          \end{bmatrix} 
+          =
+          \begin{bmatrix}
+          sin \theta  & cos \theta  & 0 \\
+          0           & 0           & 1 \\
+          cos \theta  & -sin \theta & 0
+          \end{bmatrix} 
+          \begin{bmatrix}
+            A_r \\
+            A_{\theta} \\
+            A_{\phi}
+          \end{bmatrix} 
+      \end{split}
+      % Right Column
+      \quad \vline \quad            
+      \begin{split}
+        %
+        % Spherical to Cartesian
+        %
+        &\begin{bmatrix}
+            A_x \\
+            A_y \\
+            A_z
+          \end{bmatrix}
+          =
+          \begin{bmatrix}
+            sin \theta cos \phi  & cos \theta cos \phi & -sin \phi \\
+            sin \theta sin \phi  & cos \theta sin \phi & cos \phi \\
+            cos \theta           & -sin \phi           & 0
+          \end{bmatrix} 
+          \begin{bmatrix}
+            A_r \\
+            A_{\theta} \\
+            A_{\phi}
+          \end{bmatrix} \\
+        %
+        % Cylindrical to Cartesian
+        %
+        &\begin{bmatrix}
+           A_x \\
+           A_y \\
+           A_z
+         \end{bmatrix}
+         =
+         \begin{bmatrix}
+           cos \phi & -sin \phi & 0 \\
+           sin \phi &  cos \phi & 0 \\
+           0        &  0        & 1
+         \end{bmatrix} 
+         \begin{bmatrix}
+           A_{\rho} \\
+           A_{\phi} \\
+           A_z
+         \end{bmatrix} \\
+        %
+        % Cylindrical to Spherical
+        %
+        &\begin{bmatrix}
+            A_r \\
+            A_{\theta} \\
+            A_{\phi}
+          \end{bmatrix} 
+          =
+          \begin{bmatrix}
+          sin \theta & 0 & cos \theta \\
+          cos \theta & 0 & -sin \theta \\
+          0          & 1 & 0
+          \end{bmatrix} 
+          \begin{bmatrix}
+            A_{\rho} \\
+            A_{\phi} \\
+            A_z
+          \end{bmatrix} 
+      \end{split}
+  \end{equation*}
+\end{document}
