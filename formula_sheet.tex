@@ -1,6 +1,7 @@
 \documentclass[10pt,letterpaper]{report}
 \usepackage[latin1]{inputenc}
 \usepackage{amsmath}
+\usepackage{esint}
 \usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -9,11 +10,11 @@
 
 \begin{document}
   \fancyhead{} % clear all header fields
-  \fancyhead[C]{\LARGE{\textbf{Electromagnetic Fields Formulas}}}  
-  \large 
-  
+  \fancyhead[C]{\LARGE{\textbf{Electromagnetic Fields Formulas}}}
+  \large
+
   \begin{equation*}
-    \begin{split} % Left Column 
+    \begin{split} % Left Column
       %
       % General Vector Equations
       %
@@ -21,41 +22,68 @@
       &\textbf{A}\cdot \textbf{B} = ABcos(\theta_{AB}) \\ % dot product
       &\textbf{A} \times \textbf{B} = ABsin(\theta_{AB}) \\ % cross product
       &\textbf{A} \cdot (\textbf{B} \times \textbf{C}) \\ % scaler triple product
-      & \quad = \textbf{B} \cdot (\textbf{C} \times \textbf{A}) = \textbf{C} \cdot (\textbf{A} \times \textbf{B} )  \\
-      &\textbf{A} \cdot (\textbf{B} \times \textbf{C}) = 
-        \begin{vmatrix}  
-          A_x & A_y & A_z \\
-          B_x & B_y & B_z \\
-          C_x & C_y & C_z
-        \end{vmatrix} \\
+      &\begin{split}
+       \quad &= \textbf{B} \cdot (\textbf{C} \times \textbf{A}) \\
+             &= \textbf{C} \cdot (\textbf{A} \times \textbf{B} )  \\
+             &=
+         \begin{vmatrix}
+           A_x & A_y & A_z \\
+           B_x & B_y & B_z \\
+           C_x & C_y & C_z
+         \end{vmatrix} \\
+      \end{split} \\
       &\textbf{A} \times \textbf{B} \times \textbf{C} \\ % vector triple product
       &\quad = \textbf{B}(\textbf{A} \cdot \textbf{C}) - \textbf{C}(\textbf{A} \cdot \textbf{B}) \\
       &A_B = \textbf{A} \cdot \textbf{a}_B = Acos\theta_{AB} \\ % scaler component of a on b
       &\textbf{A}_B = A_B\textbf{a}_B = (\textbf{A} \cdot \textbf{a}_B)\textbf{a}_B \\ % vector component of a on b
+      &\oint_S \boldsymbol{A} \cdot d\boldsymbol{S} = \int_v \nabla \cdot \boldsymbol{A} dv \\
+      &\oint_L \boldsymbol{A} \cdot d\boldsymbol{\ell} = \int_S (\nabla \times \boldsymbol{A}) \cdot d\boldsymbol{S} \\
       %
       % Cartesian Coordinate Equations
       %
       &\text{\underline{\textbf{Cartesian}}} \\
-      &d^2 = (x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2 \\ % distance between points
-      &\nabla = \frac{\partial}{\partial x}\textbf{a}_x +  \frac{\partial}{\partial y}\textbf{a}_y + \frac{\partial}{\partial z}\textbf{a}_z \\
+      &d^2 = (x_2 - x_1)^2 + (y_2 - y_1)^2 \\ % distance between points
+      & \quad + (z_2 - z_1)^2 \\
+      &\nabla = \frac{\partial}{\partial x}\textbf{a}_x +  \frac{\partial}{\partial y}\textbf{a}_y + \frac{\partial}{\partial z}\textbf{a}_z \\ % del
+      &d\textbf{l} = dx \, \textbf{a}_x + dy \, \textbf{a}_y + dz \, \textbf{a}_z \\ % line integral dl
+      &d\textbf{S} = dy \, dz \, \textbf{a}_x \, dx \, dz \, \textbf{a}_y \\ % surface integral dS
+      & \quad dx \, dy \, \textbf{a}_z \\
+      &dv = dx \, dy \, dz \\ % volume integral dv
       %
       % Cylindrical Coordinate Equations
       %
       &\text{\underline{\textbf{Cylindrical}}} \\
-      &d^2 = \rho_1^2 + \rho_2^2 -2\rho_1\rho_2 cos( \phi_2 - \phi_1 ) \\ % distance between points
+      &d^2 = \rho_1^2 + \rho_2^2 \\ % distance between points
+      & \quad -2\rho_1\rho_2 cos( \phi_2 - \phi_1 ) \\
       &\quad + (z_2 - z_1)^2 \\
       &\lvert\textbf{A} \rvert = \sqrt{A_{\rho}^2 + A_{\phi}^2 + A_z^2} \\ % Magnitude of A
-      &\rho = \sqrt{x^2 + y^2} \\
-      &\phi = tan^{-1} \left(\frac{y}{x}\right) \\
-      &cos( \phi ) = \frac{x}{\sqrt{x^2 + y^2}} \\
-      &sin( \phi ) = \frac{y}{\sqrt{x^2 + y^2}}
+      %&\rho = \sqrt{x^2 + y^2} \\
+      &\phi = tan^{-1} (y / x) \\
+      &cos( \phi ) = x / \sqrt{x^2 + y^2} \\
     \end{split}
     \quad
-    \begin{split} % Center Column 
+    \begin{split} % Center Column
+      &sin( \phi ) = y / \sqrt{x^2 + y^2} \\
+      &d\textbf{l} = d\rho \, \textbf{a}_{\rho} \, \rho \, d\phi \textbf{a}_{\phi} \, dz \textbf{a}_z \\ % line integral dl
+      &d\textbf{S} = \rho \, d\phi \, dz \, \textbf{a}_{\rho} \\ % Surface Integral dS
+      & \quad \quad d\rho \, dz \textbf{a}_{\phi} \\
+      & \quad \quad \rho \, d\rho \, d\phi \textbf{a}_{z} \\ %
+      &dv = \rho \, d\rho \, d\phi \, dz \\ % Volume integral dV
       &x = \rho cos(\phi) \\
       &y = \rho sin(\phi) \\
       &z = z \\
       &\nabla = \textbf{a}_{\rho} \frac{\partial}{\partial \rho} + \textbf{a}_{\phi} \frac{1}{\rho} \frac{\partial}{\partial \phi} + \frac{\partial}{\partial z}\textbf{a}_z \\
+      &\nabla \times \boldsymbol{A} = \frac{1}{\rho}
+      \begin{vmatrix}
+         \boldsymbol{a}_{\rho} & \rho \boldsymbol{a}_{\phi} & \boldsymbol{a}_z \\
+         \frac{\partial}{\partial \rho} & \frac{\partial}{\partial \phi} & \frac{\partial}{\partial z} \\
+         A_{\rho} & \rho A_{\phi} & A_z \\
+      \end{vmatrix} \\
+      &\nabla \cdot \boldsymbol{A} = \frac{1}{\rho} \frac{\partial}{\partial \rho}(\rho A_{\rho}) + \frac{1}{\rho} \frac{\partial A_{\phi}}{\partial \phi} + \frac{\partial A_z}{\partial z} \\
+      &\begin{split}
+        \nabla^2 V &= \frac{1}{\rho} \frac{\partial}{\partial \rho} \left(\rho \frac{\partial V}{\partial \rho}\right) \\
+                   &+ \frac{1}{\rho^2} \frac{\partial^2 V}{\partial \phi^2} + \frac{\partial}{\partial z} \\
+      \end{split} \\
       %
       % Spherical Coordinate Equations
       %
@@ -66,16 +94,42 @@
       &y = r sin( \theta ) sin( \phi ) \\
       &z = r cos( \theta ) \\
       &\lvert \textbf{A} \rvert = \sqrt{A_{r}^2 + A_{\theta}^2 + A_{\phi}^2} \\ % Magnitude of A
-      &r = \sqrt{x^2 + y^2 +z^2} \\
-      &\theta = tan^{-1} \left(\frac{\sqrt{x^2 + y^2}}{z}\right) \\
-      &cos( \theta ) = \frac{z}{\sqrt{x^2 + y^2 +z^2}} \\
-      &sin( \theta ) = \frac{\sqrt{x^2 + y^2}}{\sqrt{x^2 + y^2 +z^2}}\\
-      &\phi = tan^{-1} \left(\frac{y}{x}\right) \\
-      &cos( \phi ) = \frac{x}{\sqrt{x^2 + y^2}} \\
-      &sin( \phi ) = \frac{y}{\sqrt{x^2 + y^2}} \\
+      &\nabla = \frac{\partial}{\partial r} \textbf{a}_r + \frac{1}{r} \frac{\partial}{\partial \theta} \textbf{a}_{\theta} \frac{1}{r sin(\theta)} \frac{\partial}{\partial \phi} \\
+     &r = \sqrt{x^2 + y^2 +z^2} \\
+     &\theta = tan^{-1} (\sqrt{x^2 + y^2} /z ) \\
+     &cos( \theta ) = z / \sqrt{x^2 + y^2 +z^2} \\
+     &\phi = tan^{-1} (y / x) \\
     \end{split}
-    \quad  
-    \begin{split} % Right Column   
+    \quad
+    \begin{split} % Right Column
+     &sin( \theta ) = \frac{\sqrt{x^2 + y^2}}{\sqrt{x^2 + y^2 +z^2}}\\
+     &cos( \phi ) = x / \sqrt{x^2 + y^2} \\
+     &sin( \phi ) = y / \sqrt{x^2 + y^2} \\
+     &d\textbf{l} = dr\textbf{a}_r + r\, d\theta \textbf{a}_{\phi} \\
+     &\quad + r sin(\theta) \, d\phi \textbf{a}_{\phi} \\
+     &dv = r^2 \, sin( \theta )\, dr \, d\theta \, d\phi \\ % Volume integral dv
+     &\begin{split}
+        d\textbf{S} = &r^2 \, sin(\theta) \, d\theta \, d\phi \, \textbf{a}_r \\
+                      &r\, sin(\theta) \, dr \, d\phi \, \textbf{a}_{\theta} \\
+                      &r\, dr \, d\theta \textbf{a}_{\phi}
+     \end{split} \\
+     &\nabla = \frac{\partial}{\partial r}\boldsymbol{a}_r + \frac{1}{r} \frac{\partial}{\partial \theta}\boldsymbol{a}_{\theta} + \frac{1}{r sin(\theta)} \frac{\partial}{\partial \phi} \boldsymbol{a}_{\phi} \\
+     &\nabla \times \boldsymbol{A} = \frac{1}{r^2 sin(\theta)}
+     \begin{vmatrix}
+        \boldsymbol{a}_r & r \boldsymbol{a}_{\theta} & \boldsymbol{a}_{\phi} \\
+        \frac{\partial}{\partial r} & \frac{\partial}{\partial \theta} & \frac{\partial}{\partial \phi} \\
+        A_r & rA_{\theta} & r sin(\theta) A_{\phi} \\
+     \end{vmatrix} \\
+     &\begin{split}
+        \nabla \cdot \boldsymbol{A} &= \frac{1}{r^2} \frac{\partial}{\partial r}(r^2 A_r) \\
+                                    &+ \frac{1}{r sin(\theta)} \frac{\partial}{\partial \theta}(A_{\theta} sin \theta)\\
+                                    &+ \frac{1}{r sin(\theta)} \frac{\partial A_{\phi}}{\partial \phi} \\
+     \end{split} \\
+     &\begin{split}
+        \nabla^2 V &= \frac{1}{r^2} \frac{\partial}{\partial r}\left(r^2 \frac{\partial V}{\partial r}\right) \\
+                   &+ \frac{1}{r^2 sin(\theta)} \frac{\partial}{\partial \theta} \left(sin(\theta) \frac{\partial V}{\partial \theta}\right) \\
+                   &+ \frac{1}{r^2 sin(\theta)} \frac{\partial^2 V}{\partial \phi^2}
+     \end{split} \\
     %
     % Spherical Cylindrical Conversion Equations
     %
@@ -87,9 +141,54 @@
     &\theta = tan^{-1} \left(\frac{\rho}{z}\right)
     \end{split}
   \end{equation*}
-  
+
   %
   % Coordinate System Conversion Matrices
+  %
+  \begin{equation*}
+        %
+        % Cartesian to Cylindrical
+        %
+        \begin{bmatrix}
+          A_{\rho} \\
+          A_{\phi} \\
+          A_z
+          \end{bmatrix}
+          =
+          \begin{bmatrix}
+          cos \phi  & sin \phi & 0 \\
+          -sin \phi & cos \phi & 0 \\
+          0         & 0        & 1
+          \end{bmatrix}
+          \begin{bmatrix}
+            A_x \\
+            A_y \\
+            A_z
+          \end{bmatrix} \\
+      % Right Column
+      \quad \vline \quad
+        %
+        % Cylindrical to Cartesian
+        %
+        \begin{bmatrix}
+           A_x \\
+           A_y \\
+           A_z
+         \end{bmatrix}
+         =
+         \begin{bmatrix}
+           cos \phi & -sin \phi & 0 \\
+           sin \phi &  cos \phi & 0 \\
+           0        &  0        & 1
+         \end{bmatrix}
+         \begin{bmatrix}
+           A_{\rho} \\
+           A_{\phi} \\
+           A_z
+         \end{bmatrix} \\
+  \end{equation*}
+  %
+  % Coordinate System Conversion Matrices Comntinued
   %
   \begin{equation*}
       % Left Column
@@ -101,32 +200,13 @@
             A_r \\
             A_{\theta} \\
             A_{\phi}
-          \end{bmatrix} 
+          \end{bmatrix}
           =
           \begin{bmatrix}
             sin \theta cos \phi  & sin \theta sin \phi & cos \theta \\
             cos \theta cos \phi  & cos \theta sin \phi & -sin \theta \\
             -sin \phi            & cos \phi            & 0
-          \end{bmatrix} 
-          \begin{bmatrix}
-            A_x \\
-            A_y \\
-            A_z
-          \end{bmatrix} \\
-        %
-        % Cartesian to Cylindrical
-        %
-        &\begin{bmatrix}
-          A_{\rho} \\
-          A_{\phi} \\
-          A_z
-          \end{bmatrix} 
-          =
-          \begin{bmatrix}
-          cos \phi  & sin \phi & 0 \\
-          -sin \phi & cos \phi & 0 \\
-          0         & 0        & 1
-          \end{bmatrix} 
+          \end{bmatrix}
           \begin{bmatrix}
             A_x \\
             A_y \\
@@ -139,21 +219,23 @@
           A_{\rho} \\
           A_{\phi} \\
           A_z
-          \end{bmatrix} 
+          \end{bmatrix}
           =
           \begin{bmatrix}
           sin \theta  & cos \theta  & 0 \\
           0           & 0           & 1 \\
           cos \theta  & -sin \theta & 0
-          \end{bmatrix} 
+          \end{bmatrix}
           \begin{bmatrix}
             A_r \\
             A_{\theta} \\
             A_{\phi}
-          \end{bmatrix} 
-      \end{split}
-      % Right Column
-      \quad \vline \quad            
+          \end{bmatrix}
+        \end{split}
+        \quad \vline \quad
+        %
+        % Cylindrical to Spherical
+        %
       \begin{split}
         %
         % Spherical to Cartesian
@@ -168,50 +250,101 @@
             sin \theta cos \phi  & cos \theta cos \phi & -sin \phi \\
             sin \theta sin \phi  & cos \theta sin \phi & cos \phi \\
             cos \theta           & -sin \phi           & 0
-          \end{bmatrix} 
+          \end{bmatrix}
           \begin{bmatrix}
             A_r \\
             A_{\theta} \\
             A_{\phi}
           \end{bmatrix} \\
-        %
-        % Cylindrical to Cartesian
-        %
-        &\begin{bmatrix}
-           A_x \\
-           A_y \\
-           A_z
-         \end{bmatrix}
-         =
-         \begin{bmatrix}
-           cos \phi & -sin \phi & 0 \\
-           sin \phi &  cos \phi & 0 \\
-           0        &  0        & 1
-         \end{bmatrix} 
-         \begin{bmatrix}
-           A_{\rho} \\
-           A_{\phi} \\
-           A_z
-         \end{bmatrix} \\
-        %
-        % Cylindrical to Spherical
-        %
         &\begin{bmatrix}
             A_r \\
             A_{\theta} \\
             A_{\phi}
-          \end{bmatrix} 
+          \end{bmatrix}
           =
           \begin{bmatrix}
           sin \theta & 0 & cos \theta \\
           cos \theta & 0 & -sin \theta \\
           0          & 1 & 0
-          \end{bmatrix} 
+          \end{bmatrix}
           \begin{bmatrix}
             A_{\rho} \\
             A_{\phi} \\
             A_z
-          \end{bmatrix} 
-      \end{split}
+          \end{bmatrix}
+    \end{split}
+  \end{equation*}
+
+  \begin{equation*}
+    \begin{split} % Left Column
+      %
+      % Electro Static Fields
+      %
+      &\text{\underline{\textbf{Electrostatic Fields}}} \\
+      &dQ = \rho_{l|S|v} \, dl|dS|dv \\
+      &Q = \underset{L/S/v}{\int} \rho_{L|S|v} \, d\boldsymbol{l}|d\boldsymbol{S}|dv \\
+      &\textbf{F}_{12} = \frac{Q_1Q_2}{4\pi\epsilon_0 R^2} \textbf{a}_{R_{12}} \\
+      &\begin{split}
+      \textbf{E} &= \frac{1}{4\pi\epsilon_0} \sum_{k=1}^N \frac{Q_k(\textbf{r} - \textbf{r}_k )}{|\textbf{r} - \textbf{r}_k |^3} \\
+                 &= \underset{L/S/v}{\int} \frac{\rho_{L|S|v} \, d\boldsymbol{l}|d\boldsymbol{S}|dv}{4\pi\epsilon_0 R^2} \textbf{a}_r \\
+                 &= \frac{\rho_S}{2 \epsilon_0} \textbf{a}_n \\ % Electric field intensity of infinite sheet charge
+                 &= -\nabla V_{AB} \\
+      \end{split} \\
+      &\begin{split}
+        \textbf{D} &= \epsilon_0 \textbf{E} \\ % electric flux density
+                   &= \frac{\rho_S}{2} \textbf{a}_n \\
+                   &= \int_v \frac{\rho_v \, dv}{4 \pi R^2} \textbf{a}_R \\
+                   &= \varepsilon_0 \boldsymbol{E} + \boldsymbol{P} \\
+      \end{split} \\
+      &\begin{split}
+        \Psi &= \int_S \textbf{D} \cdot d \textbf{S} \\ % flux
+             &= Q_{\text{enc}} \\ % Gaus's Law
+      \end{split} \\
+      &\rho_v = \nabla  \cdot \textbf{D} \\ % Maxwell's
+      &\begin{split}
+        V(\textbf{r})
+          &= \frac{1}{4\pi \epsilon_0} \sum_{k=1}^n \frac{Q_k}{|\textbf{r} - \textbf{r}_k|} \\ %Voltage point charges
+          &= \frac{1}{4\pi \epsilon_0} \underset{L|S|v}{\int} \frac{\rho_{L|S|v} \, \textbf{r}' \, dl'|dS'|dv'}{|\textbf{r} - \textbf{r}'|} \\ % Voltage line/ surface/ volume charge
+      \end{split} \\
+      &V_{AB} = -\int_A^B \textbf{E} \cdot d\textbf{l} = \frac{W}{Q} \\
+    \end{split}
+    %
+    % Column 2
+    %
+    \quad
+    \begin{split}
+      &\begin{split} % Work / Energy
+        W_E &= \frac{1}{2} \sum_{k=1}^n Q_k V_k \\
+            &= \frac{1}{2} \underset{L|S|v}{\int} \rho_{L|S|v} V \, d\boldsymbol{l}|d\boldsymbol{S}|dv \\ %\underset{L/S/v}{\rho}
+            &= -\frac{1}{2} \int_v \textbf{D} \cdot \nabla V \, dv \\
+            &= \frac{1}{2} \int_v (\textbf{D} \cdot \textbf{E}) \, dv \\
+            &= \frac{1}{2} \int_v \epsilon_0 E^2 \, dv \\
+            &= -Q \int_A^B \textbf{E} \cdot d\textbf{l} \\
+      \end{split} \\
+      &\oint_L \textbf{E} \cdot d\textbf{l} = \int_S (\nabla \times \textbf{E}) \cdot d\textbf{S} = 0 \\ % Maxwell
+      &\nabla \times \textbf{E} = 0 \\
+      &E = \frac{V}{\ell} \\
+      &\begin{split}
+        R &= \frac{V}{I} \\
+          &= \frac{\ell}{\sigma S} \\
+          &= \frac{\int_L \textbf{E} \cdot d\boldsymbol{\ell}}{\int_S \textbf{E} \cdot d\textbf{S}} \\
+      \end{split} \\
+      &I = \int_S \textbf{J} \cdot d\textbf{S} \\
+      &\boldsymbol{P} = \lim_{\Delta v \to 0} \frac{\sum\limits_{K = 1}^{N} Q_K \boldsymbol{d}_K}{\Delta v} \\
+      &\boldsymbol{p} = Q \boldsymbol{d} \\
+      &\boldsymbol{P} = \chi_e \varepsilon_0 \boldsymbol{E} \\
+    \end{split}
+    %
+    % Column 3
+    %
+    \quad
+    \begin{split}
+      &\varepsilon_r = 1 + \chi_e = \frac{\varepsilon}{\varepsilon_0} \\
+      &\rho_{ps} = \boldsymbol{P} \cdot \boldsymbol{a}_n \\
+      &\rho_{pv} = - \nabla \cdot \boldsymbol{P} \\
+      &D_{1n} - D_{2n} = \rho_S \\
+      &D_{1n} = D_{2n} \\
+      &E_{1t} = E_{2t} = \frac{D_{1t}}{\varepsilon_1} = \frac{D_{2t}}{\varepsilon_2} \\
+    \end{split}
   \end{equation*}
 \end{document}
