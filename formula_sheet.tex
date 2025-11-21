@@ -18,7 +18,9 @@
       %
       % General Vector Equations
       %
-      &\text{\underline{\textbf{General}}} \\
+      &\boldsymbol{a}_n = \nabla p / | \nabla p | \\
+      &A = 4 \pi r^2 \\
+      &V = (4/3) \pi r^3 \\
       &\textbf{A}\cdot \textbf{B} = ABcos(\theta_{AB}) \\ % dot product
       &\textbf{A} \times \textbf{B} = ABsin(\theta_{AB}) \\ % cross product
       &\textbf{A} \cdot (\textbf{B} \times \textbf{C}) \\ % scaler triple product
@@ -283,28 +285,26 @@
       &\text{\underline{\textbf{Electrostatic Fields}}} \\
       &dQ = \rho_{l|S|v} \, dl|dS|dv \\
       &Q = \underset{L/S/v}{\int} \rho_{L|S|v} \, d\boldsymbol{l}|d\boldsymbol{S}|dv \\
-      &\textbf{F}_{12} = \frac{Q_1Q_2}{4\pi\epsilon_0 R^2} \textbf{a}_{R_{12}} \\
+      & Q_{\text{enc}} = \Psi = \oint_S \boldsymbol{D} \cdot d\boldsymbol{S} = \int_v \nabla \cdot \boldsymbol{D} dv \\
+      &\textbf{F}_{12} = \frac{Q_1Q_2}{4\pi\varepsilon_r\varepsilon_0 R^2} \textbf{a}_{R_{12}} \\
       &\begin{split}
-      \textbf{E} &= \frac{1}{4\pi\epsilon_0} \sum_{k=1}^N \frac{Q_k(\textbf{r} - \textbf{r}_k )}{|\textbf{r} - \textbf{r}_k |^3} \\
-                 &= \underset{L/S/v}{\int} \frac{\rho_{L|S|v} \, d\boldsymbol{l}|d\boldsymbol{S}|dv}{4\pi\epsilon_0 R^2} \textbf{a}_r \\
-                 &= \frac{\rho_S}{2 \epsilon_0} \textbf{a}_n \\ % Electric field intensity of infinite sheet charge
+      \textbf{E} &= \frac{1}{4\pi\varepsilon_r \varepsilon_0} \sum_{k=1}^N \frac{Q_k(\textbf{r} - \textbf{r}_k )}{|\textbf{r} - \textbf{r}_k |^3} \\
+                 &= \underset{L/S/v}{\int} \frac{\rho_{L|S|v} \, d\boldsymbol{l}|d\boldsymbol{S}|dv}{4\pi\varepsilon_r \varepsilon_0 R^2} \textbf{a}_r \\
+                 &= \frac{\rho_S}{2 \varepsilon_r \varepsilon_0} \textbf{a}_n \\ % Electric field of infinite sheet charge
+                 &= \frac{\rho_L}{2 \pi \varepsilon_r \varepsilon_0 d_{\perp L}} \boldsymbol{a}_{\perp L}\\
                  &= -\nabla V_{AB} \\
       \end{split} \\
       &\begin{split}
-        \textbf{D} &= \epsilon_0 \textbf{E} \\ % electric flux density
+        \textbf{D} &= \varepsilon_r \varepsilon_0 \textbf{E} \\ % electric flux density
                    &= \frac{\rho_S}{2} \textbf{a}_n \\
                    &= \int_v \frac{\rho_v \, dv}{4 \pi R^2} \textbf{a}_R \\
                    &= \varepsilon_0 \boldsymbol{E} + \boldsymbol{P} \\
       \end{split} \\
-      &\begin{split}
-        \Psi &= \int_S \textbf{D} \cdot d \textbf{S} \\ % flux
-             &= Q_{\text{enc}} \\ % Gaus's Law
-      \end{split} \\
       &\rho_v = \nabla  \cdot \textbf{D} \\ % Maxwell's
       &\begin{split}
         V(\textbf{r})
-          &= \frac{1}{4\pi \epsilon_0} \sum_{k=1}^n \frac{Q_k}{|\textbf{r} - \textbf{r}_k|} \\ %Voltage point charges
-          &= \frac{1}{4\pi \epsilon_0} \underset{L|S|v}{\int} \frac{\rho_{L|S|v} \, \textbf{r}' \, dl'|dS'|dv'}{|\textbf{r} - \textbf{r}'|} \\ % Voltage line/ surface/ volume charge
+          &= \frac{1}{4\pi \varepsilon_r \varepsilon_0} \sum_{k=1}^n \frac{Q_k}{|\textbf{r} - \textbf{r}_k|} \\ %Voltage point charges
+          &= \frac{1}{4\pi \varepsilon_r \varepsilon_0} \underset{L|S|v}{\int} \frac{\rho_{L|S|v} \, \textbf{r}' \, dl'|dS'|dv'}{|\textbf{r} - \textbf{r}'|} \\ % Voltage line/ surface/ volume charge
       \end{split} \\
       &V_{AB} = -\int_A^B \textbf{E} \cdot d\textbf{l} = \frac{W}{Q} \\
     \end{split}
@@ -318,7 +318,7 @@
             &= \frac{1}{2} \underset{L|S|v}{\int} \rho_{L|S|v} V \, d\boldsymbol{l}|d\boldsymbol{S}|dv \\ %\underset{L/S/v}{\rho}
             &= -\frac{1}{2} \int_v \textbf{D} \cdot \nabla V \, dv \\
             &= \frac{1}{2} \int_v (\textbf{D} \cdot \textbf{E}) \, dv \\
-            &= \frac{1}{2} \int_v \epsilon_0 E^2 \, dv \\
+            &= \frac{1}{2} \int_v \varepsilon_r \varepsilon_0 E^2 \, dv \\
             &= -Q \int_A^B \textbf{E} \cdot d\textbf{l} \\
       \end{split} \\
       &\oint_L \textbf{E} \cdot d\textbf{l} = \int_S (\nabla \times \textbf{E}) \cdot d\textbf{S} = 0 \\ % Maxwell
@@ -344,7 +344,15 @@
       &\rho_{pv} = - \nabla \cdot \boldsymbol{P} \\
       &D_{1n} - D_{2n} = \rho_S \\
       &D_{1n} = D_{2n} \\
+      &\begin{split}
+        E_{1t} &= E_{2t} = \frac{D_{1t}}{\varepsilon_1} = \frac{D_{2t}}{\varepsilon_2} \\
+               &= E_1 sin(\theta_1)  = E_2 sin(\theta_2) \\
+       \end{split} \\
       &E_{1t} = E_{2t} = \frac{D_{1t}}{\varepsilon_1} = \frac{D_{2t}}{\varepsilon_2} \\
+      &\varepsilon_1 E_{1n} = \varepsilon_2 E_{2n} \\
+      &tan(\theta_1)/tan(\theta_2) = \varepsilon_{r1} / \varepsilon_{r2} \\
+      &\nabla \times \boldsymbol{H} = \boldsymbol{J} \\
+      &\boldsymbol{H} = \boldsymbol{B}/(\mu_r \mu_0)
     \end{split}
   \end{equation*}
 \end{document}
